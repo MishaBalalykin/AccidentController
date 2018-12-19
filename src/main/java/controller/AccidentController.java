@@ -1,15 +1,11 @@
 package controller;
 
 import entity.Accident;
-import entity.MediaProof;
-import entity.TextProof;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import service.Service;
-
-import java.util.Set;
 
 /**
  * Created by mr.balalykin on 13.12.2018.

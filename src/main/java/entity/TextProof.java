@@ -1,7 +1,5 @@
 package entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 /**
@@ -20,7 +18,7 @@ public class TextProof {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TEXT_PROOF_SEQ")
     @SequenceGenerator(name = "TEXT_PROOF_SEQ",
             sequenceName = "TEXT_PROOF_SEQ", allocationSize = 1)
-    @Column(name = "PROOF_ID", insertable = false, updatable = false)
+    @Column(name = "ACCIDENT_ID", insertable = false, updatable = false)
     private long proofId;
 
     @Column(name = "PROOF", nullable = false, length = 4000)

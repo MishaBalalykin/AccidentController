@@ -1,7 +1,5 @@
 package entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,15 +19,15 @@ public class Accident {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCIDENT_SEQ")
     @SequenceGenerator(name = "ACCIDENT_SEQ",
             sequenceName = "ACCIDENT_SEQ", allocationSize = 1)
-    @Column(name = "ACCIDENT_ID", insertable = true, updatable = false)
+    @Column(name = "ID", updatable = false)
     private long accidentId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ACCIDENT_ID")
+    @JoinColumn(name = "ID")
     private Creator creator;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ACCIDENT_ID")
+    @JoinColumn(name = "ID")
     private TextProof textProof;
 
     @OneToMany(mappedBy = "accident", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -42,12 +40,12 @@ public class Accident {
     @Temporal(TemporalType.TIMESTAMP)
     private Date accidentDate;
 
-    public void addMediaProof(MediaProof mediaProof){
+    public void addMediaProof(MediaProof mediaProof) {
         mediaProofs.add(mediaProof);
         mediaProof.setAccident(this);
     }
 
-    public void removeMediaProof(MediaProof mediaProof){
+    public void removeMediaProof(MediaProof mediaProof) {
         mediaProofs.remove(mediaProof);
         mediaProof.setAccident(null);
     }

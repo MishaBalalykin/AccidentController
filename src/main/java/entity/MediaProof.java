@@ -1,7 +1,5 @@
 package entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 /**
@@ -21,11 +19,8 @@ public class MediaProof {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "PROOF_ID"/*, insertable = false, updatable = false*/)
+    @JoinColumn(name = "ACCIDENT_ID"/*, insertable = false, updatable = false*/)
     private Accident accident;
-
-    /*@Column(name = "PROOF_ID")
-    private long proofId;*/
 
     @Column(name = "PROOF", insertable = false, updatable = false)
     private String proof;

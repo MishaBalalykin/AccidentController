@@ -18,7 +18,7 @@ public class Creator {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CREATOR_INFO_SEQ")
     @SequenceGenerator(name = "CREATOR_INFO_SEQ",
             sequenceName = "CREATOR_INFO_SEQ", allocationSize = 1)
-    @Column(name = "CREATOR_ID", insertable = false, updatable = false)
+    @Column(name = "ACCIDENT_ID", insertable = false, updatable = false)
     private long creatorId;
 
     @Column(name = "NAME")
