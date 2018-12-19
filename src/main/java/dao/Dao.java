@@ -18,12 +18,12 @@ import java.util.Set;
 public class Dao {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
+
     public Dao() {
         entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
         entityManager = entityManagerFactory.createEntityManager();
-//        entityManager.getTransaction().begin();
     }
-//    @Transactional
+
     public void createEvent(Accident accident) {
         entityManager.getTransaction().begin();
         entityManager.persist(accident);
@@ -31,7 +31,7 @@ public class Dao {
         commitAndClose();
     }
 
-    private void commitAndClose(){
+    private void commitAndClose() {
         entityManager.getTransaction().commit();
         entityManager.close();
     }

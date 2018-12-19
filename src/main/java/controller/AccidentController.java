@@ -24,7 +24,7 @@ public class AccidentController {
     private static final String CREATE_EVENT = "/create-event";
 
     @RequestMapping(name = CREATE_EVENT, method = RequestMethod.POST)
-    public void createEvent(Accident accident){
+    public void createEvent(Accident accident) {
         service.createEvent(accident);
     }
 }

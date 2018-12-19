@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -13,30 +14,43 @@ import java.util.Set;
 @Entity
 @Table(name = "ACCIDENT")
 public class Accident {
-    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    public Accident() {
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCIDENT_SEQ")
+    @SequenceGenerator(name = "ACCIDENT_SEQ",
+            sequenceName = "ACCIDENT_SEQ", allocationSize = 1)
+    @Column(name = "ACCIDENT_ID", insertable = true, updatable = false)
+    private long accidentId;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ACCIDENT_ID")
     private Creator creator;
 
-    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ACCIDENT_ID")
     private TextProof textProof;
 
-    @OneToMany (mappedBy="accident", fetch=FetchType.EAGER)
-    private Set<MediaProof> mediaProofs;
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ACCIDENT_SEQ")
-    @SequenceGenerator(name="ACCIDENT_SEQ",
-            sequenceName="ACCIDENT_SEQ", allocationSize=1)
-    @Column(name = "ACCIDENT_ID", insertable = false, updatable = false)
-    private long accidentId;
+    @OneToMany(mappedBy = "accident", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<MediaProof> mediaProofs = new HashSet<MediaProof>();
 
     @Column(name = "ACCIDENT_ADDRESS", nullable = false, length = 4000)
     private String accidentAddress;
 
-    @Column(name = "ACCIDENT_DATE", nullable = false)
+    @Column(name = "ACCIDENT_DATE", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date accidentDate;
+
+    public void addMediaProof(MediaProof mediaProof){
+        mediaProofs.add(mediaProof);
+        mediaProof.setAccident(this);
+    }
+
+    public void removeMediaProof(MediaProof mediaProof){
+        mediaProofs.remove(mediaProof);
+        mediaProof.setAccident(null);
+    }
 
     //region getters and setters
 

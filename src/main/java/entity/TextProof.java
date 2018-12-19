@@ -10,13 +10,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TEXT_PROOF")
 public class TextProof {
+    public TextProof() {
+    }
+
     @OneToOne(optional = true, mappedBy = "textProof")
     private Accident accident;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "TEXT_PROOF_SEQ")
-    @SequenceGenerator(name="TEXT_PROOF_SEQ",
-            sequenceName="TEXT_PROOF_SEQ", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TEXT_PROOF_SEQ")
+    @SequenceGenerator(name = "TEXT_PROOF_SEQ",
+            sequenceName = "TEXT_PROOF_SEQ", allocationSize = 1)
     @Column(name = "PROOF_ID", insertable = false, updatable = false)
     private long proofId;
 
