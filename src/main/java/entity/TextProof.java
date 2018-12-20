@@ -11,17 +11,17 @@ public class TextProof {
     public TextProof() {
     }
 
-    @OneToOne(optional = true, mappedBy = "textProof")
+    @OneToOne(mappedBy = "textProof")
     private Accident accident;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TEXT_PROOF_SEQ")
     @SequenceGenerator(name = "TEXT_PROOF_SEQ",
             sequenceName = "TEXT_PROOF_SEQ", allocationSize = 1)
-    @Column(name = "ACCIDENT_ID", insertable = false, updatable = false)
+    @Column(name = "ACCIDENT_ID", updatable = false)
     private long proofId;
 
-    @Column(name = "PROOF", nullable = false, length = 4000)
+    @Column(name = "PROOF", length = 4000, nullable = false, updatable = false)
     private String proof;
 
     //region getters and setters

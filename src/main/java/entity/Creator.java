@@ -18,16 +18,16 @@ public class Creator {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CREATOR_INFO_SEQ")
     @SequenceGenerator(name = "CREATOR_INFO_SEQ",
             sequenceName = "CREATOR_INFO_SEQ", allocationSize = 1)
-    @Column(name = "ACCIDENT_ID", insertable = false, updatable = false)
+    @Column(name = "ACCIDENT_ID", updatable = false)
     private long creatorId;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", updatable = false)
     private String name;
 
-    @Column(name = "PHONE_NUMBER", nullable = false, length = 12)
+    @Column(name = "PHONE_NUMBER", length = 12, nullable = false, updatable = false)
     private String phoneNumber;
 
-    @Column(name = "OTHER_CONTACTS", length = 1000)
+    @Column(name = "OTHER_CONTACTS", length = 1000, updatable = false)
     private String otherContacts;
 
     //region getters and setters

@@ -23,20 +23,20 @@ public class Accident {
     private long accidentId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID")
+    @JoinColumn(name = "ID", updatable = false)
     private Creator creator;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID", updatable = false)
     private TextProof textProof;
 
-    @OneToMany(mappedBy = "accident", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "accident", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<MediaProof> mediaProofs = new HashSet<MediaProof>();
 
-    @Column(name = "ACCIDENT_ADDRESS", nullable = false, length = 4000)
+    @Column(name = "ACCIDENT_ADDRESS", nullable = false, length = 4000, updatable = false)
     private String accidentAddress;
 
-    @Column(name = "ACCIDENT_DATE", nullable = true)
+    @Column(name = "ACCIDENT_DATE", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date accidentDate;
 

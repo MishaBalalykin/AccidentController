@@ -16,13 +16,14 @@ public class MediaProof {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEDIA_PROOF_SEQ")
     @SequenceGenerator(name = "MEDIA_PROOF_SEQ",
             sequenceName = "MEDIA_PROOF_SEQ", allocationSize = 1)
+    @Column(updatable = false)
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "ACCIDENT_ID"/*, insertable = false, updatable = false*/)
+    @JoinColumn(name = "ACCIDENT_ID", updatable = false)
     private Accident accident;
 
-    @Column(name = "PROOF", insertable = false, updatable = false)
+    @Column(name = "PROOF", updatable = false)
     private String proof;
 
     //region getters and setters
@@ -59,28 +60,7 @@ public class MediaProof {
     }
     //endregion
 
-
-   /* @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        MediaProof that = (MediaProof) o;
-
-        if (proofId != that.proofId) return false;
-        if (accident != null ? !accident.equals(that.accident) : that.accident != null) return false;
-        return proof != null ? proof.equals(that.proof) : that.proof == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = accident != null ? accident.hashCode() : 0;
-        result = 31 * result + (int) (proofId ^ (proofId >>> 32));
-        result = 31 * result + (proof != null ? proof.hashCode() : 0);
-        return result;
-    }*/
-
+    //region equals & hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,4 +81,5 @@ public class MediaProof {
         result = 31 * result + (proof != null ? proof.hashCode() : 0);
         return result;
     }
+    //endregion
 }
