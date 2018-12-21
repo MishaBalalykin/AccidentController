@@ -14,4 +14,6 @@ public interface Service {
     List<Accident> getEventByPeriod(String address, Calendar startPeriod, Calendar finisPeriod);
 
     List<Accident> getEventByDate(String address, Calendar date);
+
+    List<Accident> getEventByAddress(String address);
 }

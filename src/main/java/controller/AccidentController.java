@@ -38,4 +38,9 @@ public class AccidentController {
     public void getGetEventByDate(String address, Calendar date) {
         service.getEventByDate(address, date);
     }
+
+    @RequestMapping(name = GET_EVENT_BY_DATE, method = RequestMethod.GET)
+    public void getGetEventByAddress(String address) {
+        service.getEventByAddress(address);
+    }
 }

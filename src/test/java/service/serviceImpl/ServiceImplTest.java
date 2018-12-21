@@ -118,6 +118,15 @@ public class ServiceImplTest {
         printEvent(accidents);
     }
 
+    @Test
+    public void getEventByAddress(){
+        String address = "mira street";
+
+        List<Accident> accidents = service.getEventByAddress(address);
+
+        printEvent(accidents);
+    }
+
     private void printEvent(List<Accident> accidents) {
         for (Accident accident : accidents) {
             System.out.println(accident.getAccidentAddress());

@@ -30,4 +30,9 @@ public class ServiceImpl implements Service {
     public List<Accident> getEventByDate(String address, Calendar date) {
         return dao.getEventByDate(address, date);
     }
+
+    @Override
+    public List<Accident> getEventByAddress(String address) {
+        return dao.getEventByAddress(address);
+    }
 }
