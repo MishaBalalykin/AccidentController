@@ -1,6 +1,7 @@
-package dao;
+package org.edu.mirea.dao;
 
-import entity.Accident;
+import org.edu.mirea.entity.Accident;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -13,11 +14,14 @@ import java.util.List;
 /**
  * Created by mr.balalykin on 14.12.2018.
  */
-@Component
 
+@Component
 public class Dao {
+    @Autowired
+    private EntityManager entityManager;
+
     public void createEvent(Accident accident) {
-        EntityManager entityManager = getEntityManager();
+//        EntityManager entityManager = getEntityManager();
         entityManager.getTransaction().begin();
 
         entityManager.persist(accident);
@@ -27,7 +31,7 @@ public class Dao {
 
 
     public List<Accident> getEventByPeriod(String address, Calendar startPeriod, Calendar finishPeriod) {
-        EntityManager entityManager = getEntityManager();
+//        EntityManager entityManager = getEntityManager();
         entityManager.getTransaction().begin();
 
         String hql = new StringBuilder()
@@ -52,7 +56,7 @@ public class Dao {
     }
 
     public List<Accident> getEventByDate(String address, Calendar date) {
-        EntityManager entityManager = getEntityManager();
+//        EntityManager entityManager = getEntityManager();
         entityManager.getTransaction().begin();
 
         String hql = new StringBuilder()
@@ -73,7 +77,7 @@ public class Dao {
     }
 
     public List<Accident> getEventByAddress(String address) {
-        EntityManager entityManager = getEntityManager();
+//        EntityManager entityManager = getEntityManager();
         entityManager.getTransaction().begin();
 
         String hql = new StringBuilder()
@@ -89,10 +93,10 @@ public class Dao {
         return accidents;
     }
 
-    private EntityManager getEntityManager() {
+    /*private EntityManager getEntityManager() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
         return entityManagerFactory.createEntityManager();
-    }
+    }*/
 
     private void commitAndClose(EntityManager entityManager) {
         entityManager.getTransaction().commit();

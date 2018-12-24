@@ -1,4 +1,4 @@
-package entity;
+package org.edu.mirea.entity;
 
 import javax.persistence.*;
 

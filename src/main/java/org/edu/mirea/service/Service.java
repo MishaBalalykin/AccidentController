@@ -1,6 +1,7 @@
-package service;
+package org.edu.mirea.service;
 
-import entity.Accident;
+import org.edu.mirea.entity.Accident;
+import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 /**
  * Created by mr.balalykin on 13.12.2018.
  */
+
+@Component
 public interface Service {
     void createEvent(Accident accident);
 

@@ -1,7 +1,7 @@
-package entity;
+package org.edu.mirea.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,7 +38,7 @@ public class Accident {
 
     @Column(name = "ACCIDENT_DATE", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date accidentDate;
+    private Calendar accidentDate;
 
     public void addMediaProof(MediaProof mediaProof) {
         mediaProofs.add(mediaProof);
@@ -92,11 +92,11 @@ public class Accident {
         this.accidentAddress = accidentAddress;
     }
 
-    public Date getAccidentDate() {
+    public Calendar getAccidentDate() {
         return accidentDate;
     }
 
-    public void setAccidentDate(Date accidentDate) {
+    public void setAccidentDate(Calendar accidentDate) {
         this.accidentDate = accidentDate;
     }
 //endregion

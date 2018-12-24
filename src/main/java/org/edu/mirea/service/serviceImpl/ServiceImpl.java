@@ -1,10 +1,16 @@
-package service.serviceImpl;
+package org.edu.mirea.service.serviceImpl;
 
-import dao.Dao;
-import entity.Accident;
+import org.edu.mirea.dao.Dao;
+import org.edu.mirea.entity.Accident;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import service.Service;
+import org.edu.mirea.service.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.Calendar;
 import java.util.List;
 
@@ -14,7 +20,8 @@ import java.util.List;
 
 @Component
 public class ServiceImpl implements Service {
-    private Dao dao = new Dao();
+    @Autowired
+    private Dao dao;
 
     @Override
     public void createEvent(Accident accident) {
