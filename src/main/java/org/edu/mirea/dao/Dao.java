@@ -76,10 +76,6 @@ public class Dao {
     }
     @Transactional
     public List<Accident> getEventByAddress(String address) {
-//        EntityManager entityManager = getEntityManager();
-//        entityManager.getTransaction().begin();
-//        String addr = address.getAddress();
-
         String hql = new StringBuilder()
                 .append("from Accident a where a.accidentAddress = '")
                 .append(address)
@@ -89,14 +85,8 @@ public class Dao {
         Query query = entityManager.createQuery(hql);
         List<Accident> accidents = query.getResultList();
 
-//        commitAndClose(entityManager);
         return accidents;
     }
-
-    /*private EntityManager getEntityManager() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
-        return entityManagerFactory.createEntityManager();
-    }*/
 
     private void commitAndClose(EntityManager entityManager) {
         entityManager.getTransaction().commit();

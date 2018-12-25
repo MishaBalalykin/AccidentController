@@ -1,7 +1,7 @@
 package org.edu.mirea.controller;
 
 import org.edu.mirea.entity.Accident;
-import org.edu.mirea.webmodel.output.WebAccidents;
+import org.edu.mirea.webmodel.output.WebAccident;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.edu.mirea.service.Service;
@@ -41,8 +41,8 @@ public class AccidentController{
     }
 
     @RequestMapping(value = GET_EVENT_BY_ADDRESS, method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody public WebAccidents getGetEventByAddress(@PathVariable String address) {
-        WebAccidents accidents = service.getEventByAddress(address);
+    @ResponseBody public List<WebAccident> getGetEventByAddress(@PathVariable String address) {
+        List<WebAccident> accidents = service.getEventByAddress(address);
         return accidents;
     }
 }

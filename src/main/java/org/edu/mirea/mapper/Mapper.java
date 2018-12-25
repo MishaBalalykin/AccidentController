@@ -3,7 +3,6 @@ package org.edu.mirea.mapper;
 import org.edu.mirea.entity.Accident;
 import org.edu.mirea.entity.MediaProof;
 import org.edu.mirea.webmodel.output.WebAccident;
-import org.edu.mirea.webmodel.output.WebAccidents;
 import org.edu.mirea.webmodel.output.WebMediaProof;
 import org.springframework.stereotype.Component;
 
@@ -18,14 +17,13 @@ import java.util.stream.Collectors;
  */
 @Component
 public class Mapper {
-    public WebAccidents map(List<Accident> accidents){
-        WebAccidents webAccidents = new WebAccidents();
-        List<WebAccident> listWebAccidents = new ArrayList<>();
+    public List<WebAccident> map(List<Accident> accidents){
+        List<WebAccident> webAccidents = new ArrayList<>();
 
         for (Accident accident : accidents) {
-            listWebAccidents.add(map(accident));
+            webAccidents.add(map(accident));
         }
-        webAccidents.setWebAccidents(listWebAccidents);
+
         return webAccidents;
     }
 

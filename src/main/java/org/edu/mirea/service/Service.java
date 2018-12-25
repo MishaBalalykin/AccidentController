@@ -1,7 +1,7 @@
 package org.edu.mirea.service;
 
 import org.edu.mirea.entity.Accident;
-import org.edu.mirea.webmodel.output.WebAccidents;
+import org.edu.mirea.webmodel.output.WebAccident;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
@@ -19,5 +19,5 @@ public interface Service {
 
     List<Accident> getEventByDate(String address, Calendar date);
 
-    WebAccidents getEventByAddress(String address);
+    List<WebAccident> getEventByAddress(String address);
 }
