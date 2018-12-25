@@ -2,15 +2,12 @@ package org.edu.mirea.service.serviceImpl;
 
 import org.edu.mirea.dao.Dao;
 import org.edu.mirea.entity.Accident;
+import org.edu.mirea.mapper.Mapper;
+import org.edu.mirea.webmodel.output.WebAccidents;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import org.edu.mirea.service.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.Calendar;
 import java.util.List;
 
@@ -22,6 +19,8 @@ import java.util.List;
 public class ServiceImpl implements Service {
     @Autowired
     private Dao dao;
+    @Autowired
+    private Mapper mapper;
 
     @Override
     public void createEvent(Accident accident) {
@@ -39,7 +38,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public List<Accident> getEventByAddress(String address) {
-        return dao.getEventByAddress(address);
+    public WebAccidents getEventByAddress(String address) {
+        return mapper.map(dao.getEventByAddress(address));
     }
 }

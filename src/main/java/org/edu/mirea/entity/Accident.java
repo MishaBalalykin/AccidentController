@@ -1,5 +1,7 @@
 package org.edu.mirea.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -22,6 +24,7 @@ public class Accident {
     @Column(name = "ID", updatable = false)
     private long accidentId;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID", updatable = false)
     private Creator creator;
@@ -31,7 +34,7 @@ public class Accident {
     private TextProof textProof;
 
     @OneToMany(mappedBy = "accident", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<MediaProof> mediaProofs = new HashSet<MediaProof>();
+    private Set<MediaProof> mediaProofs = new HashSet<>();
 
     @Column(name = "ACCIDENT_ADDRESS", nullable = false, length = 4000, updatable = false)
     private String accidentAddress;

@@ -131,11 +131,11 @@ public class ServiceImplTest {
 
     @Test
     public void getEventByAddress(){
-        String address = "mira street";
+//        String address = "mira street";
 
-        List<Accident> accidents = service.getEventByAddress(address);
+//        List<Accident> accidents = service.getEventByAddress(address);
 
-        printEvent(accidents);
+//        printEvent(accidents);
     }
 
     private void printEvent(List<Accident> accidents) {

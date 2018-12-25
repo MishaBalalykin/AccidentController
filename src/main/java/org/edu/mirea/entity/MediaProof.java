@@ -1,5 +1,7 @@
 package org.edu.mirea.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -19,6 +21,7 @@ public class MediaProof {
     @Column(updatable = false)
     private long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ACCIDENT_ID", updatable = false)
     private Accident accident;

@@ -1,14 +1,10 @@
 package org.edu.mirea.controller;
 
 import org.edu.mirea.entity.Accident;
+import org.edu.mirea.webmodel.output.WebAccidents;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.edu.mirea.service.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Calendar;
 import java.util.List;
@@ -27,7 +23,7 @@ public class AccidentController{
     private static final String CREATE_EVENT = "/create-event";
     private static final String GET_EVENT_BY_PERIOD = "/get-event-by-period";
     private static final String GET_EVENT_BY_DATE = "/get-event-by-date";
-    private static final String GET_EVENT_BY_ADDRESS = "/get-event-by-address";
+    private static final String GET_EVENT_BY_ADDRESS = "/get-event-by-address/{address}";
 
     @RequestMapping(value = CREATE_EVENT, method = RequestMethod.POST)
     public void createEvent(Accident accident) {
@@ -35,7 +31,7 @@ public class AccidentController{
     }
 
     @RequestMapping(value = GET_EVENT_BY_PERIOD, method = RequestMethod.GET)
-    public List<Accident> getEventByPeriod(String address, Calendar startPeriod, Calendar finishPeriod) {
+    public @ResponseBody List<Accident> getEventByPeriod(String address, Calendar startPeriod, Calendar finishPeriod) {
         return service.getEventByPeriod(address, startPeriod, finishPeriod);
     }
 
@@ -44,10 +40,9 @@ public class AccidentController{
         return service.getEventByDate(address, date);
     }
 
-    @RequestMapping(value = GET_EVENT_BY_ADDRESS, method = RequestMethod.GET)
-    public void/*List<Accident>*/ getGetEventByAddress(String address) {
-        /*String */
-        /*return */List<Accident> acc = service.getEventByAddress(address);
-        System.out.println(acc);
+    @RequestMapping(value = GET_EVENT_BY_ADDRESS, method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody public WebAccidents getGetEventByAddress(@PathVariable String address) {
+        WebAccidents accidents = service.getEventByAddress(address);
+        return accidents;
     }
 }

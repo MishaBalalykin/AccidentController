@@ -3,10 +3,9 @@ package org.edu.mirea.dao;
 import org.edu.mirea.entity.Accident;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.Calendar;
 import java.util.List;
@@ -35,7 +34,7 @@ public class Dao {
         entityManager.getTransaction().begin();
 
         String hql = new StringBuilder()
-                .append("from Accident a where a.accidentAddress = '")
+                .append("from WebAddress a where a.accidentAddress = '")
                 .append(address)
                 .append("' and a.accidentDate between to_date(")
                 .append(startPeriod.get(Calendar.YEAR))
@@ -60,7 +59,7 @@ public class Dao {
         entityManager.getTransaction().begin();
 
         String hql = new StringBuilder()
-                .append("from Accident a where a.accidentAddress = '")
+                .append("from WebAddress a where a.accidentAddress = '")
                 .append(address)
                 .append("' and a.accidentDate like to_date(")
                 .append(date.get(Calendar.YEAR))
@@ -75,10 +74,11 @@ public class Dao {
         commitAndClose(entityManager);
         return accidents;
     }
-
+    @Transactional
     public List<Accident> getEventByAddress(String address) {
 //        EntityManager entityManager = getEntityManager();
-        entityManager.getTransaction().begin();
+//        entityManager.getTransaction().begin();
+//        String addr = address.getAddress();
 
         String hql = new StringBuilder()
                 .append("from Accident a where a.accidentAddress = '")
@@ -89,7 +89,7 @@ public class Dao {
         Query query = entityManager.createQuery(hql);
         List<Accident> accidents = query.getResultList();
 
-        commitAndClose(entityManager);
+//        commitAndClose(entityManager);
         return accidents;
     }
 

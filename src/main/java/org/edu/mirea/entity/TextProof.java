@@ -1,5 +1,7 @@
 package org.edu.mirea.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +13,7 @@ public class TextProof {
     public TextProof() {
     }
 
+    @JsonIgnore
     @OneToOne(mappedBy = "textProof")
     private Accident accident;
 

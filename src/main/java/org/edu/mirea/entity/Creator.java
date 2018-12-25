@@ -1,5 +1,7 @@
 package org.edu.mirea.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -11,6 +13,7 @@ public class Creator {
     public Creator() {
     }
 
+    @JsonIgnore
     @OneToOne(mappedBy = "creator")
     private Accident accident;
 
