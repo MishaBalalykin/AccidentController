@@ -4,6 +4,7 @@ import org.edu.mirea.entity.Accident;
 import org.edu.mirea.service.Service;
 import org.edu.mirea.webmodel.AddressAndDateRequest;
 import org.edu.mirea.webmodel.AddressAndPeriodRequest;
+import org.edu.mirea.webmodel.WebAccident;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,18 +37,18 @@ public class AccidentController{
     }
 
     @RequestMapping(value = GET_EVENT_BY_ADDRESS_AND_PERIOD, method = RequestMethod.POST)
-    @ResponseBody public List<Accident> getEventByAddressAndPeriod(@RequestBody AddressAndPeriodRequest addressAndPeriodRequest) {
-        List<Accident> accidents = service.getEventByAddressAndPeriod(addressAndPeriodRequest);
+    @ResponseBody public List<WebAccident> getEventByAddressAndPeriod(@RequestBody AddressAndPeriodRequest addressAndPeriodRequest) {
+        List<WebAccident> accidents = service.getEventByAddressAndPeriod(addressAndPeriodRequest);
         return accidents;
     }
 
     @RequestMapping(value = GET_EVENT_BY_ADDRESS_AND_DATE, method = RequestMethod.POST, produces = "application/json")
-    @ResponseBody public List<Accident> getGetEventByAddressAndDate(@RequestBody AddressAndDateRequest addressAndDateRequest) {
+    @ResponseBody public List<WebAccident> getGetEventByAddressAndDate(@RequestBody AddressAndDateRequest addressAndDateRequest) {
         return service.getGetEventByAddressAndDate(addressAndDateRequest);
     }
 
     @RequestMapping(value = GET_EVENT_BY_ADDRESS, method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody public List<Accident> getGetEventByAddress(@PathVariable String address) {
+    @ResponseBody public List<WebAccident> getGetEventByAddress(@PathVariable String address) {
         return service.getEventByAddress(address);
     }
 }

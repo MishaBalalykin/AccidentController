@@ -3,6 +3,7 @@ package org.edu.mirea.service;
 import org.edu.mirea.entity.Accident;
 import org.edu.mirea.webmodel.AddressAndDateRequest;
 import org.edu.mirea.webmodel.AddressAndPeriodRequest;
+import org.edu.mirea.webmodel.WebAccident;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
@@ -16,9 +17,9 @@ import java.util.List;
 public interface Service {
     void createEvent(Accident accident);
 
-    List<Accident> getEventByAddressAndPeriod(AddressAndPeriodRequest addressAndPeriodRequest);
+    List<WebAccident> getEventByAddressAndPeriod(AddressAndPeriodRequest addressAndPeriodRequest);
 
-    List<Accident> getGetEventByAddressAndDate(AddressAndDateRequest addressAndDateRequest);
+    List<WebAccident> getGetEventByAddressAndDate(AddressAndDateRequest addressAndDateRequest);
 
-    List<Accident> getEventByAddress(String address);
+    List<WebAccident> getEventByAddress(String address);
 }
