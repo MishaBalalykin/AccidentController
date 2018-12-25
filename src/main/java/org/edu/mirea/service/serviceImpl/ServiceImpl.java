@@ -2,11 +2,11 @@ package org.edu.mirea.service.serviceImpl;
 
 import org.edu.mirea.dao.Dao;
 import org.edu.mirea.entity.Accident;
-import org.edu.mirea.mapper.Mapper;
-import org.edu.mirea.webmodel.output.WebAccident;
+import org.edu.mirea.service.Service;
+import org.edu.mirea.webmodel.AddressAndDateRequest;
+import org.edu.mirea.webmodel.AddressAndPeriodRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.edu.mirea.service.Service;
 
 import java.util.Calendar;
 import java.util.List;
@@ -17,10 +17,12 @@ import java.util.List;
 
 @Component
 public class ServiceImpl implements Service {
-    @Autowired
     private Dao dao;
+
     @Autowired
-    private Mapper mapper;
+    public ServiceImpl(Dao dao) {
+        this.dao = dao;
+    }
 
     @Override
     public void createEvent(Accident accident) {
@@ -28,17 +30,17 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public List<Accident> getEventByPeriod(String address, Calendar startPeriod, Calendar finisPeriod) {
-        return dao.getEventByPeriod(address, startPeriod, finisPeriod);
+    public List<Accident> getEventByAddressAndPeriod(AddressAndPeriodRequest addressAndPeriodRequest) {
+        return dao.getEventByAddressAndPeriod(addressAndPeriodRequest);
     }
 
     @Override
-    public List<Accident> getEventByDate(String address, Calendar date) {
-        return dao.getEventByDate(address, date);
+    public List<Accident> getGetEventByAddressAndDate(AddressAndDateRequest addressAndDateRequest) {
+        return dao.getGetEventByAddressAndDate(addressAndDateRequest);
     }
 
     @Override
-    public List<WebAccident> getEventByAddress(String address) {
-        return mapper.map(dao.getEventByAddress(address));
+    public List<Accident> getEventByAddress(String address) {
+        return dao.getEventByAddress(address);
     }
 }

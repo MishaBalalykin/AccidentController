@@ -1,6 +1,8 @@
 package org.edu.mirea.dao;
 
 import org.edu.mirea.entity.Accident;
+import org.edu.mirea.webmodel.AddressAndDateRequest;
+import org.edu.mirea.webmodel.AddressAndPeriodRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +18,12 @@ import java.util.List;
 
 @Component
 public class Dao {
-    @Autowired
     private EntityManager entityManager;
+
+    @Autowired
+    public Dao(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     public void createEvent(Accident accident) {
 //        EntityManager entityManager = getEntityManager();
@@ -28,13 +34,14 @@ public class Dao {
         commitAndClose(entityManager);
     }
 
-
-    public List<Accident> getEventByPeriod(String address, Calendar startPeriod, Calendar finishPeriod) {
-//        EntityManager entityManager = getEntityManager();
-        entityManager.getTransaction().begin();
+    @Transactional
+    public List<Accident> getEventByAddressAndPeriod(AddressAndPeriodRequest addressAndPeriodRequest) {
+        String address = addressAndPeriodRequest.getAddress();
+        Calendar startPeriod = addressAndPeriodRequest.getStartPeriod();
+        Calendar finishPeriod = addressAndPeriodRequest.getFinishPeriod();
 
         String hql = new StringBuilder()
-                .append("from WebAddress a where a.accidentAddress = '")
+                .append("from Accident a where a.accidentAddress = '")
                 .append(address)
                 .append("' and a.accidentDate between to_date(")
                 .append(startPeriod.get(Calendar.YEAR))
@@ -43,23 +50,23 @@ public class Dao {
                 .append(", 'YYYY-MM-DD') and to_date(")
                 .append(finishPeriod.get(Calendar.YEAR))
                 .append(finishPeriod.get(Calendar.MONTH) + 1)
-                .append(finishPeriod.get(Calendar.DAY_OF_MONTH))
+                .append(finishPeriod.get(Calendar.DAY_OF_MONTH) + 1)
                 .append(", 'YYYY-MM-DD')")
                 .toString();
 
         Query query = entityManager.createQuery(hql);
         List<Accident> accidents = query.getResultList();
 
-        commitAndClose(entityManager);
         return accidents;
     }
 
-    public List<Accident> getEventByDate(String address, Calendar date) {
-//        EntityManager entityManager = getEntityManager();
-        entityManager.getTransaction().begin();
+    @Transactional
+    public List<Accident> getGetEventByAddressAndDate(AddressAndDateRequest addressAndDateRequest) {
+        String address = addressAndDateRequest.getAddress();
+        Calendar date = addressAndDateRequest.getDate();
 
         String hql = new StringBuilder()
-                .append("from WebAddress a where a.accidentAddress = '")
+                .append("from Accident a where a.accidentAddress = '")
                 .append(address)
                 .append("' and a.accidentDate like to_date(")
                 .append(date.get(Calendar.YEAR))
@@ -71,9 +78,9 @@ public class Dao {
         Query query = entityManager.createQuery(hql);
         List<Accident> accidents = query.getResultList();
 
-        commitAndClose(entityManager);
         return accidents;
     }
+
     @Transactional
     public List<Accident> getEventByAddress(String address) {
         String hql = new StringBuilder()
