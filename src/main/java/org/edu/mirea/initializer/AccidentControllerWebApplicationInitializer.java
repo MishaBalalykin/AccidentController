@@ -12,7 +12,8 @@ import javax.servlet.ServletRegistration;
 /**
  * Created by mr.balalykin on 24.12.2018.
  */
-public class AccidentControllerWebApplicationInitializer implements WebApplicationInitializer{
+
+public class AccidentControllerWebApplicationInitializer implements WebApplicationInitializer {
     private final static String DISPATCHER = "dispatcher";
 
     @Override

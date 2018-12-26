@@ -12,18 +12,19 @@ import javax.persistence.Persistence;
 /**
  * Created by mr.balalykin on 24.12.2018.
  */
+
 @Configuration
 public class AccidentControllerConfiguration {
     @Bean
     @Scope("prototype")
-    public EntityManager getEntityManager(){
+    public EntityManager getEntityManager() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
         return entityManagerFactory.createEntityManager();
     }
 
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver createMultipartResolver() {
-        CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
         resolver.setDefaultEncoding("utf-8");
         return resolver;
     }

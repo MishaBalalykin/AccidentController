@@ -19,8 +19,73 @@ import java.util.stream.Collectors;
 /**
  * Created by mr.balalykin on 25.12.2018.
  */
+
 @Component
 public class Mapper {
+    /**
+     * @param webAccident
+     * @return Accident
+     * <p>
+     * Mapping WebAccident to Accident entity
+     */
+    public Accident map(WebAccident webAccident) {
+        Accident accident = new Accident();
+        Set<WebMediaProof> webMediaProofs = webAccident.getMediaProofs();
+        Set<MediaProof> mediaProofs = new HashSet<>();
+
+        accident.setAccidentAddress(webAccident.getAccidentAddress());
+        accident.setAccidentDate(webAccident.getAccidentDate());
+        accident.setTextProof(map(webAccident.getTextProof()));
+        accident.setCreator(map(webAccident.getCreator()));
+        mediaProofs.addAll(webMediaProofs.stream().map(this::map).collect(Collectors.toList()));
+        accident.setMediaProofs(mediaProofs);
+        return accident;
+    }
+
+    /**
+     * @param webTextProof
+     * @return TextProof
+     * <p>
+     * Mapping WebTextProof to TextProof entity
+     */
+    private TextProof map(WebTextProof webTextProof) {
+        TextProof textProof = new TextProof();
+        textProof.setProof(webTextProof.getProof());
+        return textProof;
+    }
+
+    /**
+     * @param webCreator
+     * @return Creator
+     * <p>
+     * Mapping WebCreator to Creator entity
+     */
+    private Creator map(WebCreator webCreator) {
+        Creator creator = new Creator();
+        creator.setName(webCreator.getName());
+        creator.setPhoneNumber(webCreator.getPhoneNumber());
+        creator.setOtherContacts(webCreator.getOtherContacts());
+        return creator;
+    }
+
+    /**
+     * @param webMediaProof
+     * @return MediaProof
+     * <p>
+     * Mapping WebMediaProof to MediaProof entity
+     */
+    private MediaProof map(WebMediaProof webMediaProof) {
+        MediaProof mediaProof = new MediaProof();
+        mediaProof.setProof(webMediaProof.getMediaProof());
+        return mediaProof;
+    }
+
+    /**
+     * @param accidents
+     * @return List<WebAccident>
+     * <p>
+     * Mapping list of accidents entity to list web models
+     */
     public List<WebAccident> map(List<Accident> accidents) {
         List<WebAccident> webAccidents = new ArrayList<>();
 
@@ -30,6 +95,12 @@ public class Mapper {
         return webAccidents;
     }
 
+    /**
+     * @param accident
+     * @return WebAccident
+     * <p>
+     * Mapping Accident entity to WebAccident web model
+     */
     private WebAccident map(Accident accident) {
         WebAccident webAccident = new WebAccident();
         Set<MediaProof> mediaProofs = accident.getMediaProofs();
@@ -45,6 +116,12 @@ public class Mapper {
         return webAccident;
     }
 
+    /**
+     * @param mediaProof
+     * @return WebMediaProof
+     * <p>
+     * Mapping MediaProof entity to WebMediaProof web model
+     */
     private WebMediaProof map(MediaProof mediaProof) {
         WebMediaProof webMediaProof = new WebMediaProof();
 
@@ -53,6 +130,12 @@ public class Mapper {
         return webMediaProof;
     }
 
+    /**
+     * @param creator
+     * @return WebCreator
+     * <p>
+     * Mapping Creator entity to WebCreator web model
+     */
     private WebCreator map(Creator creator) {
         WebCreator webCreator = new WebCreator();
         webCreator.setName(creator.getName());
@@ -61,6 +144,12 @@ public class Mapper {
         return webCreator;
     }
 
+    /**
+     * @param textProof
+     * @return WebTextProof
+     * <p>
+     * Mapping TextProof entity to WebTextProof web model
+     */
     private WebTextProof map(TextProof textProof) {
         WebTextProof webTextProof = new WebTextProof();
         webTextProof.setProof(textProof.getProof());

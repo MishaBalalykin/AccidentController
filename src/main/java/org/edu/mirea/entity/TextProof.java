@@ -7,6 +7,7 @@ import javax.persistence.*;
 /**
  * Created by mr.balalykin on 14.12.2018.
  */
+
 @Entity
 @Table(name = "TEXT_PROOF")
 public class TextProof {

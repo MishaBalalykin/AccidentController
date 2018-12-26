@@ -15,7 +15,7 @@ import java.util.List;
 
 @Component
 public interface Service {
-    void createEvent(Accident accident);
+    void createEvent(WebAccident accident);
 
     List<WebAccident> getEventByAddressAndPeriod(AddressAndPeriodRequest addressAndPeriodRequest);
 

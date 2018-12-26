@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by mr.balalykin on 25.12.2018.
  */
+
 public class WebMediaProof implements Serializable {
     private String mediaProof;
 

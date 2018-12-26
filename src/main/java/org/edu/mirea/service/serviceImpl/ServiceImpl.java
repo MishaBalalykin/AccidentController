@@ -1,7 +1,6 @@
 package org.edu.mirea.service.serviceImpl;
 
 import org.edu.mirea.dao.Dao;
-import org.edu.mirea.entity.Accident;
 import org.edu.mirea.mapper.Mapper;
 import org.edu.mirea.service.Service;
 import org.edu.mirea.webmodel.AddressAndDateRequest;
@@ -10,7 +9,6 @@ import org.edu.mirea.webmodel.WebAccident;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -29,8 +27,8 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void createEvent(Accident accident) {
-        dao.createEvent(accident);
+    public void createEvent(WebAccident accident) {
+        dao.createEvent(mapper.map(accident));
     }
 
     @Override

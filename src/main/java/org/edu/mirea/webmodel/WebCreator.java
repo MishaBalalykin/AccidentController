@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by mr.balalykin on 25.12.2018.
  */
+
 public class WebCreator implements Serializable {
     private String name;
     private String phoneNumber;

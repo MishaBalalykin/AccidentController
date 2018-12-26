@@ -25,16 +25,13 @@ public class Dao {
         this.entityManager = entityManager;
     }
 
+    @Transactional
     public void createEvent(Accident accident) {
-//        EntityManager entityManager = getEntityManager();
         entityManager.getTransaction().begin();
-
         entityManager.persist(accident);
-
-        commitAndClose(entityManager);
+        entityManager.getTransaction().commit();
     }
 
-    @Transactional
     public List<Accident> getEventByAddressAndPeriod(AddressAndPeriodRequest addressAndPeriodRequest) {
         String address = addressAndPeriodRequest.getAddress();
         Calendar startPeriod = addressAndPeriodRequest.getStartPeriod();
@@ -60,7 +57,6 @@ public class Dao {
         return accidents;
     }
 
-    @Transactional
     public List<Accident> getGetEventByAddressAndDate(AddressAndDateRequest addressAndDateRequest) {
         String address = addressAndDateRequest.getAddress();
         Calendar date = addressAndDateRequest.getDate();
@@ -81,7 +77,6 @@ public class Dao {
         return accidents;
     }
 
-    @Transactional
     public List<Accident> getEventByAddress(String address) {
         String hql = new StringBuilder()
                 .append("from Accident a where a.accidentAddress = '")
@@ -93,10 +88,5 @@ public class Dao {
         List<Accident> accidents = query.getResultList();
 
         return accidents;
-    }
-
-    private void commitAndClose(EntityManager entityManager) {
-        entityManager.getTransaction().commit();
-        entityManager.close();
     }
 }

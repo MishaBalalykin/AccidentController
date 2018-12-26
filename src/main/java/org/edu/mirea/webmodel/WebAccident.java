@@ -8,6 +8,7 @@ import java.util.Set;
 /**
  * Created by mr.balalykin on 25.12.2018.
  */
+
 public class WebAccident implements Serializable {
     private WebCreator creator;
     private WebTextProof textProof;

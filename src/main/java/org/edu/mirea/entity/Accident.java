@@ -33,6 +33,7 @@ public class Accident {
     @JoinColumn(name = "ID", updatable = false)
     private TextProof textProof;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "accident", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<MediaProof> mediaProofs = new HashSet<>();
 

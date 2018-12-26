@@ -6,6 +6,7 @@ import java.util.Calendar;
 /**
  * Created by mr.balalykin on 25.12.2018.
  */
+
 public class AddressAndDateRequest implements Serializable {
     private String address;
     private Calendar date;
