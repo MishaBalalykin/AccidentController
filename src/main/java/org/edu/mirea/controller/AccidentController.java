@@ -5,7 +5,6 @@ import org.edu.mirea.webmodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
 import java.util.List;
 
 
@@ -39,8 +38,7 @@ public class AccidentController {
     @RequestMapping(value = GET_ACCIDENT_BY_ADDRESS_AND_PERIOD, method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public List<WebAccident> getAccidentByAddressAndPeriod(@RequestBody AddressAndPeriodRequest addressAndPeriodRequest) {
-        List<WebAccident> accidents = service.getAccidentByAddressAndPeriod(addressAndPeriodRequest);
-        return accidents;
+        return service.getAccidentByAddressAndPeriod(addressAndPeriodRequest);
     }
 
     @RequestMapping(value = GET_ACCIDENT_BY_ADDRESS_AND_DATE, method = RequestMethod.POST, produces = "application/json")
@@ -54,16 +52,16 @@ public class AccidentController {
     public List<WebAccident> getGetAccidentByAddress(@PathVariable String address) {
         return service.getAccidentByAddress(address);
     }
-    
+
     @RequestMapping(value = GET_ACCIDENT_BY_PERIOD, method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public List<WebAccident> getAccidentByPeriod(@RequestBody Period period){
+    public List<WebAccident> getAccidentByPeriod(@RequestBody Period period) {
         return service.getAccidentByPeriod(period);
     }
 
     @RequestMapping(value = GET_ACCIDENT_BY_DATE, method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public List<WebAccident> getAccidentByDate(@RequestBody Date date){
+    public List<WebAccident> getAccidentByDate(@RequestBody Date date) {
         return service.getAccidentByDate(date);
     }
 }

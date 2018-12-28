@@ -1,0 +1,8 @@
+подключение базы
+1. закинуть драйвер в папку проекта
+2. прописать зависимость в пом
+3. выполнить:
+mvn install:install-file -Dfile=C:\\Users\\mr.balalykin\\Downloads\\AccidentController\\ojdbc6-12.1.0.2.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=12.1.0.2 -Dpackaging=jar
+4. подключить database
+5. настроить datasourse на database
+datasourse находится в view/tool window/persistent

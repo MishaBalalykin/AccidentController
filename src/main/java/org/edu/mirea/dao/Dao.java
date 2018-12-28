@@ -22,7 +22,6 @@ import java.util.List;
 @Component
 public class Dao {
     private EntityManager entityManager;
-    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     public Dao(EntityManager entityManager) {
@@ -41,17 +40,15 @@ public class Dao {
         Calendar startPeriod = addressAndPeriodRequest.getStartPeriod();
         Calendar finishPeriod = addressAndPeriodRequest.getFinishPeriod();
 
+        finishPeriod.add(Calendar.DATE, 1); // need for oracle
+
         String hql = new StringBuilder()
                 .append("from Accident a where a.accidentAddress = '")
                 .append(address)
                 .append("' and a.accidentDate between to_date(")
-                .append(startPeriod.get(Calendar.YEAR))
-                .append(startPeriod.get(Calendar.MONTH) + 1)
-                .append(startPeriod.get(Calendar.DAY_OF_MONTH))
+                .append(getCorrectDateFormat(startPeriod))
                 .append(", 'YYYY-MM-DD') and to_date(")
-                .append(finishPeriod.get(Calendar.YEAR))
-                .append(finishPeriod.get(Calendar.MONTH) + 1)
-                .append(finishPeriod.get(Calendar.DAY_OF_MONTH) + 1)
+                .append(getCorrectDateFormat(finishPeriod))
                 .append(", 'YYYY-MM-DD')")
                 .toString();
 
@@ -99,19 +96,12 @@ public class Dao {
         Calendar finishPeriod = period.getFinishPeriod();
 
         finishPeriod.add(Calendar.DATE, 1); // need for oracle
-        
-
-        //TODO придумать как сделать так чтобы дата всегда была в формате YYYY-MM-DD
 
         String hql = new StringBuilder()
                 .append("from Accident a where a.accidentDate between to_date(")
-                .append(startPeriod.get(Calendar.YEAR))
-                .append(startPeriod.get(Calendar.MONTH) + 1)
-                .append(startPeriod.get(Calendar.DAY_OF_MONTH))
+                .append(getCorrectDateFormat(startPeriod))
                 .append(", 'YYYY-MM-DD') and to_date(")
-                .append(finishPeriod.get(Calendar.YEAR))
-                .append(finishPeriod.get(Calendar.MONTH) + 1)
-                .append(finishPeriod.get(Calendar.DAY_OF_MONTH))
+                .append(getCorrectDateFormat(finishPeriod))
                 .append(", 'YYYY-MM-DD')")
                 .toString();
 
@@ -135,5 +125,10 @@ public class Dao {
         List<Accident> accidents = query.getResultList();
 
         return accidents;
+    }
+
+    private String getCorrectDateFormat(Calendar date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        return format.format(date.getTime());
     }
 }
