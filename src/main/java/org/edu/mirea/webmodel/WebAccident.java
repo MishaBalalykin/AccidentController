@@ -1,9 +1,7 @@
 package org.edu.mirea.webmodel;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by mr.balalykin on 25.12.2018.
@@ -12,7 +10,7 @@ import java.util.Set;
 public class WebAccident implements Serializable {
     private WebCreator creator;
     private WebTextProof textProof;
-    private Set<WebMediaProof> mediaProofs = new HashSet<>();
+    private List<WebMediaProof> mediaProofs = new ArrayList<>();
     private String accidentAddress;
     private Calendar accidentDate;
 
@@ -32,11 +30,11 @@ public class WebAccident implements Serializable {
         this.textProof = textProof;
     }
 
-    public Set<WebMediaProof> getMediaProofs() {
+    public List<WebMediaProof> getMediaProofs() {
         return mediaProofs;
     }
 
-    public void setMediaProofs(Set<WebMediaProof> mediaProofs) {
+    public void setMediaProofs(List<WebMediaProof> mediaProofs) {
         this.mediaProofs = mediaProofs;
     }
 

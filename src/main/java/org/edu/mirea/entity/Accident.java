@@ -3,9 +3,7 @@ package org.edu.mirea.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by mr.balalykin on 14.12.2018.
@@ -35,7 +33,7 @@ public class Accident {
 
     @JsonIgnore
     @OneToMany(mappedBy = "accident", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<MediaProof> mediaProofs = new HashSet<>();
+    private List<MediaProof> mediaProofs = new ArrayList<>();
 
     @Column(name = "ACCIDENT_ADDRESS", nullable = false, length = 4000, updatable = false)
     private String accidentAddress;
@@ -72,11 +70,11 @@ public class Accident {
         this.textProof = textProof;
     }
 
-    public Set<MediaProof> getMediaProofs() {
+    public List<MediaProof> getMediaProofs() {
         return mediaProofs;
     }
 
-    public void setMediaProofs(Set<MediaProof> mediaProofs) {
+    public void setMediaProofs(List<MediaProof> mediaProofs) {
         this.mediaProofs = mediaProofs;
     }
 

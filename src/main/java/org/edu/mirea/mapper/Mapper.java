@@ -30,14 +30,19 @@ public class Mapper {
      */
     public Accident map(WebAccident webAccident) {
         Accident accident = new Accident();
-        Set<WebMediaProof> webMediaProofs = webAccident.getMediaProofs();
-        Set<MediaProof> mediaProofs = new HashSet<>();
+        List<WebMediaProof> webMediaProofs = webAccident.getMediaProofs();
+        List<MediaProof> mediaProofs = new ArrayList<>();
 
         accident.setAccidentAddress(webAccident.getAccidentAddress());
         accident.setAccidentDate(webAccident.getAccidentDate());
         accident.setTextProof(map(webAccident.getTextProof()));
         accident.setCreator(map(webAccident.getCreator()));
-        mediaProofs.addAll(webMediaProofs.stream().map(this::map).collect(Collectors.toList()));
+        for (WebMediaProof webMediaProof : webMediaProofs) {
+            MediaProof mediaProof = new MediaProof();
+            mediaProof.setProof(webMediaProof.getMediaProof());
+            mediaProof.setAccident(accident);
+            mediaProofs.add(mediaProof);
+        }
         accident.setMediaProofs(mediaProofs);
         return accident;
     }
@@ -103,8 +108,8 @@ public class Mapper {
      */
     private WebAccident map(Accident accident) {
         WebAccident webAccident = new WebAccident();
-        Set<MediaProof> mediaProofs = accident.getMediaProofs();
-        Set<WebMediaProof> webMediaProofs = new HashSet<>();
+        List<MediaProof> mediaProofs = accident.getMediaProofs();
+        List<WebMediaProof> webMediaProofs = new ArrayList<>();
 
         webAccident.setAccidentAddress(accident.getAccidentAddress());
         webAccident.setAccidentDate(accident.getAccidentDate());
