@@ -66,9 +66,7 @@ public class Dao {
                 .append("from Accident a where a.accidentAddress = '")
                 .append(address)
                 .append("' and a.accidentDate like to_date(")
-                .append(date.get(Calendar.YEAR))
-                .append(date.get(Calendar.MONTH) + 1)
-                .append(date.get(Calendar.DAY_OF_MONTH))
+                .append(getCorrectDateFormat(date))
                 .append(", 'YYYY-MM-DD')")
                 .toString();
 
@@ -115,9 +113,7 @@ public class Dao {
         Calendar date = webModelOfDate.getDate();
         String hql = new StringBuilder()
                 .append("from Accident a where a.accidentDate like to_date(")
-                .append(date.get(Calendar.YEAR))
-                .append(date.get(Calendar.MONTH) + 1)
-                .append(date.get(Calendar.DAY_OF_MONTH))
+                .append(getCorrectDateFormat(date))
                 .append(", 'YYYY-MM-DD')")
                 .toString();
 

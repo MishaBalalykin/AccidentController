@@ -31,8 +31,8 @@ public class AccidentController {
 
     @RequestMapping(value = CREATE_ACCIDENT, method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public void createEvent(@RequestBody WebAccident accident) {
-        service.createEvent(accident);
+    public void createAccident(@RequestBody WebAccident accident) {
+        service.createAccident(accident);
     }
 
     @RequestMapping(value = GET_ACCIDENT_BY_ADDRESS_AND_PERIOD, method = RequestMethod.POST, produces = "application/json")
@@ -43,13 +43,13 @@ public class AccidentController {
 
     @RequestMapping(value = GET_ACCIDENT_BY_ADDRESS_AND_DATE, method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public List<WebAccident> getGetAccidentByAddressAndDate(@RequestBody AddressAndDateRequest addressAndDateRequest) {
-        return service.getGetAccidentByAddressAndDate(addressAndDateRequest);
+    public List<WebAccident> getAccidentByAddressAndDate(@RequestBody AddressAndDateRequest addressAndDateRequest) {
+        return service.getAccidentByAddressAndDate(addressAndDateRequest);
     }
 
     @RequestMapping(value = GET_ACCIDENT_BY_ADDRESS, method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<WebAccident> getGetAccidentByAddress(@PathVariable String address) {
+    public List<WebAccident> getAccidentByAddress(@PathVariable String address) {
         return service.getAccidentByAddress(address);
     }
 

@@ -11,11 +11,11 @@ import java.util.List;
 
 @Component
 public interface Service {
-    void createEvent(WebAccident accident);
+    void createAccident(WebAccident accident);
 
     List<WebAccident> getAccidentByAddressAndPeriod(AddressAndPeriodRequest addressAndPeriodRequest);
 
-    List<WebAccident> getGetAccidentByAddressAndDate(AddressAndDateRequest addressAndDateRequest);
+    List<WebAccident> getAccidentByAddressAndDate(AddressAndDateRequest addressAndDateRequest);
 
     List<WebAccident> getAccidentByAddress(String address);
 

@@ -25,7 +25,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void createEvent(WebAccident accident) {
+    public void createAccident(WebAccident accident) {
         dao.createAccident(mapper.map(accident));
     }
 
@@ -35,7 +35,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public List<WebAccident> getGetAccidentByAddressAndDate(AddressAndDateRequest addressAndDateRequest) {
+    public List<WebAccident> getAccidentByAddressAndDate(AddressAndDateRequest addressAndDateRequest) {
         return mapper.map(dao.getAccidentByAddressAndDate(addressAndDateRequest));
     }
 

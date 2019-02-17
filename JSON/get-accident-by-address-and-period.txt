@@ -1,0 +1,5 @@
+{
+  "address" : "Novomytyshynsy",
+  "startPeriod": "1545405321000",
+  "finishPeriod": "1545405321000"
+}
