@@ -11,9 +11,7 @@ import org.edu.mirea.webmodel.WebTextProof;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -39,7 +37,7 @@ public class Mapper {
         accident.setCreator(map(webAccident.getCreator()));
         for (WebMediaProof webMediaProof : webMediaProofs) {
             MediaProof mediaProof = new MediaProof();
-            mediaProof.setProof(webMediaProof.getMediaProof());
+            mediaProof.setProof(webMediaProof.getMediaProof().getBytes());
             mediaProof.setAccident(accident);
             mediaProofs.add(mediaProof);
         }
@@ -81,7 +79,7 @@ public class Mapper {
      */
     private MediaProof map(WebMediaProof webMediaProof) {
         MediaProof mediaProof = new MediaProof();
-        mediaProof.setProof(webMediaProof.getMediaProof());
+        mediaProof.setProof(webMediaProof.getMediaProof().getBytes());
         return mediaProof;
     }
 
@@ -130,7 +128,7 @@ public class Mapper {
     private WebMediaProof map(MediaProof mediaProof) {
         WebMediaProof webMediaProof = new WebMediaProof();
 
-        webMediaProof.setMediaProof(mediaProof.getProof());
+        webMediaProof.setMediaProof(new String(mediaProof.getProof()));
 
         return webMediaProof;
     }

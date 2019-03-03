@@ -27,7 +27,7 @@ public class MediaProof {
     private Accident accident;
 
     @Column(name = "PROOF", updatable = false)
-    private String proof;
+    private byte[] proof;
 
     //region getters and setters
     public Accident getAccident() {
@@ -54,11 +54,11 @@ public class MediaProof {
         this.proofId = proofId;
     }*/
 
-    public String getProof() {
+    public byte[] getProof() {
         return proof;
     }
 
-    public void setProof(String proof) {
+    public void setProof(byte[] proof) {
         this.proof = proof;
     }
     //endregion
