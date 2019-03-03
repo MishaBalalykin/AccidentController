@@ -1,0 +1,14 @@
+{
+  "creator": {
+    "name": "misha",
+    "phoneNumber": "+79260113914"
+  },
+  "textProof": {
+    "proof": "proof"
+  },
+  "mediaProofs": [
+    {"mediaProof": "HEAR"}
+  ],
+  "accidentAddress": "Novomytyshynsy",
+  "accidentDate": "1551018900"
+}
