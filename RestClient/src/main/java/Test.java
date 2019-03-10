@@ -22,15 +22,15 @@ public class Test {
             "  },\n" +
             "  \"mediaProofs\": [\n" +
             "    {\"mediaProof\": \"" + encoder("C:\\Users\\ASUS\\Downloads\\PROJECT\\AccidentController\\RestClient\\file\\11.jpeg") + "\"},\n" +
-            "    {\"mediaProof\": \"" + encoder("C:\\Users\\ASUS\\Downloads\\PROJECT\\AccidentController\\RestClient\\file\\akt.png") + "\"}\n" +
+            "    {\"mediaProof\": \"" + encoder("C:\\Users\\ASUS\\Downloads\\PROJECT\\AccidentController\\RestClient\\file\\video.mp4") + "\"}\n" +
             "  ],\n" +
-            "  \"accidentAddress\": \"Novomytyshynsy\",\n" +
+            "  \"accidentAddress\": \"NovomytyshynsyProspect\",\n" +
             "  \"accidentDate\": \"1545405321000\"\n" +
             "}";
 
     public static void main(String[] args) throws ClientProtocolException, IOException {
         String filePathTemplate = "C:\\Users\\ASUS\\Downloads\\PROJECT\\AccidentController\\RestClient\\file\\decoded\\decodedMedia";
-//        doPost(createAccident);
+        doPost(createAccident);
         int i = 0;
         for (String resultString : pars(doGet())) {
             String filePath = filePathTemplate + i + ".txt";
@@ -58,7 +58,7 @@ public class Test {
         String line = "";
 
         HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet("http://localhost:8080//get-accident-by-address/Novomytyshynsy");
+        HttpGet request = new HttpGet("http://localhost:8080//get-accident-by-address/NovomytyshynsyProspect");
         HttpResponse response = null;
         try {
             response = client.execute(request);

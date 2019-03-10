@@ -46,43 +46,12 @@ public class MediaProof {
         this.id = id;
     }
 
-    /*public long getProofId() {
-        return proofId;
-    }
-
-    public void setProofId(long proofId) {
-        this.proofId = proofId;
-    }*/
-
     public byte[] getProof() {
         return proof;
     }
 
     public void setProof(byte[] proof) {
         this.proof = proof;
-    }
-    //endregion
-
-    //region equals & hashCode
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        MediaProof that = (MediaProof) o;
-
-        if (id != that.id) return false;
-        if (accident != null ? !accident.equals(that.accident) : that.accident != null) return false;
-        return proof != null ? proof.equals(that.proof) : that.proof == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (accident != null ? accident.hashCode() : 0);
-        result = 31 * result + (proof != null ? proof.hashCode() : 0);
-        return result;
     }
     //endregion
 }
