@@ -21,8 +21,8 @@ public class Test {
             "    \"proof\": \"proof\"\n" +
             "  },\n" +
             "  \"mediaProofs\": [\n" +
-            "    {\"mediaProof\": \"" + encoder("C:\\Users\\ASUS\\Downloads\\PROJECT\\AccidentController\\RestClient\\file\\11.jpeg") + "\"},\n" +
-            "    {\"mediaProof\": \"" + encoder("C:\\Users\\ASUS\\Downloads\\PROJECT\\AccidentController\\RestClient\\file\\video.mp4") + "\"}\n" +
+            "    {\"mediaProof\": \"" + encoder("F:\\download\\misha.jpg", "jpg") + "\"},\n" +
+            "    {\"mediaProof\": \"" + encoder("C:\\Users\\ASUS\\Downloads\\PROJECT\\AccidentController\\RestClient\\file\\video.mp4", "mp4") + "\"}\n" +
             "  ],\n" +
             "  \"accidentAddress\": \"NovomytyshynsyProspect\",\n" +
             "  \"accidentDate\": \"1545405321000\"\n" +
@@ -32,10 +32,13 @@ public class Test {
         String filePathTemplate = "C:\\Users\\ASUS\\Downloads\\PROJECT\\AccidentController\\RestClient\\file\\decoded\\decodedMedia";
         doPost(createAccident);
         int i = 0;
-        for (String resultString : pars(doGet())) {
-            String filePath = filePathTemplate + i + ".txt";
+        String responce = doGet();
+        List<String> parsedResponces = pars(responce);
+        for (String resultString : parsedResponces) {
+            String[] fileAndFormat = resultString.split("MishaBalalykin");
+            String filePath = filePathTemplate + i + "." + fileAndFormat[1];
             i++;
-            decoder(resultString, filePath);
+            decoder(fileAndFormat[0], filePath);
         }
     }
 
@@ -93,18 +96,17 @@ public class Test {
             resultList.add(splitedString2[0]);
             i++;
         }
-       // System.out.println(splitedString2[0]);
         return resultList;
     }
 
-    public static String encoder(String imagePath) {
+    public static String encoder(String imagePath, String format) {
         String base64Image = "";
         File file = new File(imagePath);
         try (FileInputStream imageInFile = new FileInputStream(file)) {
             // Reading a Image file from file system
             byte imageData[] = new byte[(int) file.length()];
             imageInFile.read(imageData);
-            base64Image = Base64.getEncoder().encodeToString(imageData);
+            base64Image = Base64.getEncoder().encodeToString(imageData) + "MishaBalalykin" + format;
         } catch (FileNotFoundException e) {
             System.out.println("Image not found" + e);
         } catch (IOException ioe) {
