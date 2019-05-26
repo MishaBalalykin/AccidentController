@@ -6,6 +6,7 @@ import org.edu.mirea.service.Service;
 import org.edu.mirea.webmodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
+    @Transactional
     public void createAccident(WebAccident accident) {
         dao.createAccident(mapper.map(accident));
     }

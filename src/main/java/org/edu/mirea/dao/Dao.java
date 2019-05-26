@@ -5,11 +5,11 @@ import org.edu.mirea.webmodel.AddressAndDateRequest;
 import org.edu.mirea.webmodel.AddressAndPeriodRequest;
 import org.edu.mirea.webmodel.Date;
 import org.edu.mirea.webmodel.Period;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,19 +20,13 @@ import java.util.List;
  */
 
 @Component
+@EnableTransactionManagement
 public class Dao {
-    private EntityManager entityManager;
+    @PersistenceContext
+    public transient EntityManager entityManager;
 
-    @Autowired
-    public Dao(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    @Transactional
     public void createAccident(Accident accident) {
-        entityManager.getTransaction().begin();
         entityManager.persist(accident);
-        entityManager.getTransaction().commit();
     }
 
     public List<Accident> getAccidentByAddressAndPeriod(AddressAndPeriodRequest addressAndPeriodRequest) {
