@@ -23,7 +23,7 @@ import java.util.List;
 @EnableTransactionManagement
 public class Dao {
     @PersistenceContext
-    public transient EntityManager entityManager;
+    private EntityManager entityManager;
 
     public void createAccident(Accident accident) {
         entityManager.persist(accident);
